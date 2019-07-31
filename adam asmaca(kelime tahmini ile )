@@ -1,0 +1,110 @@
+#tahmin edilen kelime icerisinden, istenilen kelime icerisinde bulunan harfleri de bulur yerine yerlestirir
+
+import random
+
+resim = ["""
+   +---+
+   |   |
+       |
+       |
+       |
+       |
+--------""", """
+   +---+
+   |   |
+   O   |
+       |
+       |
+       |
+--------""", """
+   +---+
+   |   |
+   O   |
+   |   |
+       |
+       |
+--------""", """
+   +---+
+   |   |
+   O   |
+  /|   |
+       |
+       |
+--------""", """
+   +---+
+   |   |
+   O   |
+  /|\   |
+       |
+       |
+--------""", """
+   +---+
+   |   |
+   O   |
+  /|\  |
+  /    |
+       |
+--------""", """
+   +---+
+   |   |
+   O   |
+  /|\  |
+  / \  |
+       |
+--------"""]
+
+print(("*******") + "ADAM ASMACA OYUNU" + ("********"))
+tahmin = []         #random kelime ile input kelime arasindaki ortak harfler tutulur
+adim = 0
+kelime = random.choice(["python","visualbasic", "java", "html", "ruby", "swift","matlab","assembly","scala","cuda","perl","go","lua","rust","processing","d","clojure","ocaml","actionscript"])
+liste=[]        #ekranda tahmin edilen kelime ile random kelime arasinda yerleri bilinmis harfleri gosterir
+
+for i in range(len(kelime)):
+    liste.append('*')
+
+a=0
+while True:
+
+    if adim==6:
+        print(resim[adim])
+        print("\n{} Yazilim Dilini Dogru Tahmin Edemediniz!\nMalesef Kaybettiniz...".format(kelime.upper()))
+        break
+
+    try:
+        for i in kelime:
+            for j in tahmin:
+                if i == j:
+                    m = kelime.index(i)
+                    liste.pop(m)
+                    liste.insert(m, i)
+
+    except IndexError:
+        print("{} harfli bir kelime tahmininde bulununuz!".format(adim))
+
+
+
+    print(liste)
+    print(resim[adim])
+
+    while True:
+        cevap = input("\n{} Harfli Yazilim Dili icin {}.Tahmininiz: ".format(len(kelime),adim+1))
+        if len(cevap)!=len(kelime):
+            print("{} harfli kelime tahmininde bulununuz!".format(len(kelime)))
+            continue
+        elif cevap.isalpha()!=True:
+            print("rakamsal ifade girmeyiniz!")
+            continue
+        if cevap == kelime:
+            print("Tebrikler {} yazilim dilini {}. denemede bildiniz!".format(kelime.upper(),adim+1))
+            quit()
+        else:
+            for i in kelime:
+                for j in cevap:
+                    if i==j:
+                        if j in tahmin:
+                            continue
+                        else:
+                            tahmin.append(j)
+            adim+=1
+
+            break
