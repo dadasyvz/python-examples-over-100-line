@@ -1,0 +1,103 @@
+import random
+import time
+head='''
+#####################################
+#                                   #
+#       Zar Atma Oyunu              #
+#                                   #
+#       1 - Tek Zar                 #
+#       2 - Çift Zar                #
+#       3 - Çıkış                   #
+#                                   #
+#####################################'''
+
+
+while True:
+    print(head)
+    soru=input("seciminiz  :")
+    if soru=="1":
+        kullanici = 0
+        bilgsayar = 0
+        while True:
+
+            if kullanici == 10:
+                print("kullanici kazandi")
+                time.sleep(2)
+                break
+
+            if bilgsayar == 10:
+                print("bilgisayar kazandi")
+                time.sleep(2)
+                break
+
+            time.sleep(1)
+
+            giris=input("calismasi icin enter basiniz")
+            kullanici_zari=random.randrange(1,7)
+            print("kullaniciya gelen zar  : " ,kullanici_zari)
+            time.sleep(2)
+            bilgisayar_zari=random.randrange(1,7)
+            print("bilgisayarla gelen zar   :" ,bilgisayar_zari)
+            time.sleep(2)
+
+
+            if kullanici_zari>bilgisayar_zari:
+                kullanici+=1
+                print("kullanici   =",kullanici)
+                print("bilgisayar  =", bilgsayar)
+            elif bilgisayar_zari>kullanici_zari:
+                bilgsayar+=1
+                print("kullanici   =", kullanici)
+                print("bilgisayar  =", bilgsayar)
+
+            if bilgsayar==kullanici:
+                continue
+
+
+    elif soru=="2":
+        b = 0
+        k = 0
+
+        while True:
+
+            if k == 10:
+                print("kullanici kazandi")
+                time.sleep(3)
+                break
+
+            if b == 10:
+                print("bilgisayar kazandi")
+                time.sleep(3)
+                break
+
+            time.sleep(1)
+
+            giris = input("calismasi icin enter basiniz")
+            kullanici_zari1 = int(random.randrange(1, 7))
+            kullanici_zari2=int(random.randrange(1, 7))
+            k_toplam=kullanici_zari1+kullanici_zari2
+            print("kullaniciya gelen zar toplami : ", k_toplam)
+            time.sleep(3)
+            bilgisayar_zari1 =int(random.randrange(1, 7))
+            bilgisayar_zari2 =int( random.randrange(1, 7))
+            b_toplam=bilgisayar_zari1 + bilgisayar_zari2
+            print("bilgisayarla gelen zar toplami   :", b_toplam)
+            time.sleep(3)
+
+            if b_toplam>k_toplam:
+
+                b+=1
+                print("kullanici   =", k)
+                print("bilgisayar  =", b)
+
+            elif k_toplam>b_toplam:
+                k+=1
+                print("kullanici   =", k)
+                print("bilgisayar  =", b)
+            elif k_toplam==b_toplam:
+                continue
+
+    elif soru=="3":
+        print("cikis yapiliyor...")
+        time.sleep(2)
+        break
