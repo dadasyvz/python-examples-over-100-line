@@ -1,0 +1,133 @@
+import random
+
+ulkeler=[]
+with open("dunyadaki ulkeler.txt","r",encoding="utf-8") as file:
+    for i in file:
+        if len(i)==1:
+            i=i.replace(i,"")
+
+        elif i.endswith("\n")==True:
+            i=i.replace("\n","")
+            i=i.strip()
+            ulkeler.append(i.lower())
+
+resim = ["""
+   +---+
+   |   |
+       |
+       |
+       |
+       |
+--------""", """
+   +---+
+   |   |
+   O   |
+       |
+       |
+       |
+--------""", """
+   +---+
+   |   |
+   O   |
+   |   |
+       |
+       |
+--------""", """
+   +---+
+   |   |
+   O   |
+  /|   |
+       |
+       |
+--------""", """
+   +---+
+   |   |
+   O   |
+  /|\   |
+       |
+       |
+--------""", """
+   +---+
+   |   |
+   O   |
+  /|\  |
+  /    |
+       |
+--------""", """
+   +---+
+   |   |
+   O   |
+  /|\  |
+  / \  |
+       |
+--------"""]
+
+print(("*******") + "ADAM ASMACA OYUNU" + ("********"))
+
+ulke=random.choice(ulkeler)
+adim=0
+liste=[]
+
+for i in range(len(ulke)):
+    liste.append('*')
+a=0
+
+print(ulke)
+while True:
+    print(liste)
+    print(resim[adim])
+
+    if adim==6:
+        print(resim[adim])
+        print("\n{} Ulkesini Dogru Tahmin Edemediniz!\nMalesef Kaybettiniz...".format(ulke.upper()))
+        break
+
+    tahmin = input("1) {} Harfli Ulke Icin Harf Tahmini\n"
+                   "2) {} Harfli Ulke Icin Ulke Tahmini\n"
+                   "----->".format(len(ulke),len(ulke)))
+    if tahmin == "1":
+        cevap = input("Harf Giriniz=")
+
+        if cevap.isalpha() != True:
+            print("Harf Haric Ifade Girmeyiniz!")
+            continue
+
+        if cevap in ulke:
+            a = 0
+            k=0
+            for i in ulke:
+                if cevap == i:
+                    liste.pop(a)
+                    liste.insert(a, cevap)
+                    a += 1
+                else:
+                    a += 1
+
+            if liste==list(ulke):
+                print("Tebrikler {} Ulkesini {}. denemede bildiniz!".format(ulke.upper(), adim + 1))
+                quit()
+
+            adim += 1
+            continue
+        else:
+            adim+=1
+            continue
+
+
+    elif tahmin == "2":
+        cevap = input("Ulkeyi Tahmin Ediniz=")
+
+        if cevap.isalpha() != True:
+            print("Harf Haric Ifade Girmeyiniz!")
+            continue
+
+        elif cevap == ulke:
+            print("Tebrikler {} Ulkesini {}. denemede bildiniz!".format(ulke.upper(), adim + 1))
+            quit()
+
+        elif cevap != ulke:
+            print("Malesef Bilemediniz,{} Hakkiniz Kaldi...".format(6 - adim))
+            adim += 1
+            continue
+
+    
