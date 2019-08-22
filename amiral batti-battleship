@@ -1298,7 +1298,7 @@ def atis():
     else:
         tahta[int(hamle)-1]="░"
         print("hicbir gemiye isabet ettiremediniz...")
-        time.sleep(5)
+        time.sleep(2)
     if k==8:
         print("butun gemiler vuruldu ...KAZANDINIZ!")
         time.sleep(3)
@@ -1336,7 +1336,7 @@ while True:
     yazdir()
     oyun+=1
     print(15-oyun,"hakkiniz kaldi..")
-    if oyun==3:
+    if oyun==15:
         print("tum gemileri vuramadiniz...")
         yerlesik_duzen()
         yazdir()
