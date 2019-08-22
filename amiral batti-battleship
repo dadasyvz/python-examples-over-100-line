@@ -1246,8 +1246,7 @@ def yerlesim():
         time.sleep(2)
         quit()
     ###############################################
-def atis():
-    hamle=(input("atis yapiniz="))
+def atis(hamle):
     global k
     global oyun
     if tahta[int(hamle)-1] == "░" or tahta[int(hamle)-1] == "█":
@@ -1332,7 +1331,14 @@ yazdir()
 oyun = 0    #15 hamleyi kontrol ettrdigim degisken
 k=0         #atis icinde oyun bitme durumunu kontrol ettirdigim degisken
 while True:
-    atis()
+    hamle = (input("atis yapiniz="))
+    if hamle.isalpha()==True:
+        print("1-100 arasi giris yapmalisiniz...")
+        continue
+    elif int(hamle)>100 or int(hamle)<1:
+        print("1-100 arasi rakam girisi yapmalisiniz...")
+        continue
+    atis(hamle)
     yazdir()
     oyun+=1
     print(15-oyun,"hakkiniz kaldi..")
